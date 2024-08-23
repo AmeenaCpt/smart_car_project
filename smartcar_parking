@@ -1,0 +1,34 @@
+import RPi.GPIO as GPIO import 
+time 
+# Set GPIO mode 
+GPIO.setmode(GPIO.BCM) 
+# Define GPIO pins for IR sensors and LEDs 
+sensor1_pin = 17 sensor2_pin = 18 led1_pin 
+= 23 led2_pin = 24 
+# Setup GPIO pins 
+GPIO.setup(sensor1_pin, GPIO.IN) 
+GPIO.setup(sensor2_pin, GPIO.IN) 
+GPIO.setup(led1_pin, GPIO.OUT) 
+GPIO.setup(led2_pin, GPIO.OUT) 
+try: while True: # Read sensor status 
+sensor1_status = GPIO.input(sensor1_pin) 
+sensor2_status = GPIO.input(sensor2_pin) 
+# Update LED status based on sensor status 
+if sensor1_status == GPIO.LOW: 
+GPIO.output(led1_pin, GPIO.HIGH) 
+print("slot 1 occupied") # Parking available 
+else: 
+GPIO.output(led1_pin, GPIO.LOW) 
+print("slot 1 is available") # Parking occupied 
+if sensor2_status == GPIO.LOW: 
+Smart car parking system 
+13
+GPIO.output(led2_pin, GPIO.HIGH) print("slot 
+2 occupied") # Parking available else: 
+GPIO.output(led2_pin, GPIO.LOW) 
+print("slot 2 is available") # Parking occupied 
+# Delay for stability 
+time.sleep(5) except 
+KeyboardInterrupt: # 
+Clean up GPIO 
+GPIO.cleanup() which language is this
